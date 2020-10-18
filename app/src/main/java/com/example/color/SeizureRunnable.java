@@ -34,7 +34,7 @@ public class SeizureRunnable implements Runnable {
                         Thread.sleep(time);
                         randomColor();
 
-                        time = Math.max(time - 10, 50);
+                        time = Math.max(time - 23, 50);
                         Log.d("seizure_runnable", "c: " + count++ + ", t: " + time);
                     }
 
