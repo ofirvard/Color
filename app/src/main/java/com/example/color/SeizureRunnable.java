@@ -8,29 +8,36 @@ import android.view.View;
 
 import java.util.Random;
 
-public class SeizureRunnable implements Runnable {
-    private View view;
+public class SeizureRunnable implements Runnable
+{
+    private final View view;
     private boolean run = false;
-    private Random rnd = new Random();
+    private final Random rnd = new Random();
     private MediaPlayer mediaPlayer;
 
-    public SeizureRunnable(Context context, View view) {
+    public SeizureRunnable(Context context, View view)
+    {
         this.view = view;
         mediaPlayer = MediaPlayer.create(context, R.raw.dubstep);
         mediaPlayer.setLooping(true);
     }
 
     @Override
-    public void run() {
-        try {
+    public void run()
+    {
+        try
+        {
             while (true)
-                if (this.run) {
+                if (this.run)
+                {
                     Thread.sleep(2000);
                     int time = 500;
                     int count = 0;
+
                     mediaPlayer.start();
 
-                    while (this.run) {
+                    while (this.run)
+                    {
                         Thread.sleep(time);
                         randomColor();
 
@@ -38,7 +45,8 @@ public class SeizureRunnable implements Runnable {
                         Log.d("seizure_runnable", "c: " + count++ + ", t: " + time);
                     }
 
-                    mediaPlayer.reset();
+                    mediaPlayer.pause();
+                    mediaPlayer.seekTo(0);
                 }
         } catch (InterruptedException e) {
             e.printStackTrace();
